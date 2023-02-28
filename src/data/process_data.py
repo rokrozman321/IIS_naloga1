@@ -3,6 +3,7 @@ import json
 import numpy as np
 from sklearn.experimental import enable_iterative_imputer
 from sklearn.impute import IterativeImputer
+import os
 
 
 filename = "data/raw/data.json"
@@ -79,3 +80,12 @@ df = pd.DataFrame(temp_df, columns=df.columns)
 print(df)
 print(df.isnull().sum())
 
+
+
+# kje si bomo shranili raw podatke
+filename = "data/processed/data.csv" 
+
+# ustvarimo folder in datoteko ce se ne obstaja
+os.makedirs(os.path.dirname(filename), exist_ok=True)
+
+df.to_csv(filename, index=False)
