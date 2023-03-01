@@ -122,9 +122,10 @@
 #       - name: Run tests
 #         run: pytest
 
-name: test
+name: Testing default
 
-on: pull_request
+on: push
+
 jobs:
   test:
     runs-on: ubuntu-latest
