@@ -1,0 +1,3 @@
+Test mae: 1.8824
+Test mse: 7.1244
+Test evs: 0.9847
