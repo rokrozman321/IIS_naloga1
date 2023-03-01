@@ -3,14 +3,22 @@ FROM python:3.9-slim
 WORKDIR /app
 
 # Install dependencies for building and running the application
-RUN apt-get update && \
-    apt-get install -y curl build-essential && \
-    curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+RUN pip install poetry
 
 # Install Poetry dependencies
-COPY pyproject.toml poetry.lock ./
-RUN /root/.poetry/bin/poetry install --no-root
+COPY pyproject.toml poetry.lock /app/
 
-COPY src/ models/ ./
+RUN poetry install --no-root --no-dev
 
-CMD ["/root/.poetry/bin/poetry", "run", "python", "./src/serve/app.py"]
+COPY . /app
+
+COPY src/serve/app.py /app/src/serve
+
+EXPOSE 5000
+
+WORKDIR /app/src/serve/
+
+# Start the application
+CMD ["poetry", "run", "python", "app.py"]
+
+# CMD ["poetry", "run", "python", "src/serve/app.py"]
