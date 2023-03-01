@@ -60,3 +60,21 @@ Razvojno okolje naj zajema sledeče:
 - Razvito spletno storitev testirajte z uporabo orodja Postman ali katerim izmed podobnih orodij.
 - Za razvito spletno storitev osnovne teste (pytest), ki se naj ob vsakem "pushu" na GitHub samodejno izvedejo (GitHub Actions).
 - Končno razvito rešitev zapakirajte v obliko Docker slike.
+
+primer poslanega json request:
+
+            {
+                "no2":36.255351616,
+                "pm2.5":78.0,
+                "o3":44.0,
+                "leto_od":2023.0,
+                "mesec_od":2.0,
+                "dan_od":15.0,
+                "ura_od":19.0,
+                "min_od":0.0,
+                "leto_do":2023.0,
+                "mesec_do":2.0,
+                "dan_do":15.0,
+                "ura_do":20.0,
+                "min_do":0.0
+            }
