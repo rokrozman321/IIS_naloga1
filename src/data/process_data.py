@@ -12,7 +12,6 @@ def process_data():
 
     d = []
 
-    print(data_dict)
     for i in range(len(data_dict)):
         temp=data_dict['json'][i]
         json_object = json.loads(temp)
@@ -32,11 +31,9 @@ def process_data():
             })
 
     df = pd.DataFrame(d)
-    print(df)
 
     # sort
     df.sort_values(by='datum_od', inplace=True)
-
 
     # transform date
     df['datum_od'] = pd.to_datetime(df['datum_od'])
@@ -53,23 +50,12 @@ def process_data():
     df['ura_do'] = df['datum_do'].dt.hour
     df['min_do'] = df['datum_do'].dt.minute
 
-
-    print(df)
-
     # drop datum_od in datum_do
     df = df.drop(['datum_od'], axis=1)
     df = df.drop(['datum_do'], axis=1)
 
-    # missing data
-    print(df.isnull().sum())
-
-    # df=df.fillna(method='ffill')
-    # print(df.isnull().sum())
-    # print(df)
-
 
     df1 = df[df.isna().any(axis=1)]
-    print (df1)
 
     # fill missing data
 
@@ -77,11 +63,6 @@ def process_data():
     imp.fit(df)
     temp_df = imp.transform(df)
     df = pd.DataFrame(temp_df, columns=df.columns)
-
-    print(df)
-    print(df.isnull().sum())
-
-
 
     # kje si bomo shranili raw podatke
     filename = "data/processed/data.csv" 

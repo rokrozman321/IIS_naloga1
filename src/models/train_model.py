@@ -9,15 +9,15 @@ import joblib
 def train_models():
     filename = "data/processed/data.csv" 
     df = pd.read_csv(filename)
-    print(df)
+    # print(df)
 
-    print(df.isnull().sum())
+    # print(df.isnull().sum())
 
     columns = df.columns
     vhod = columns.tolist()
     vhod.remove('pm10')
 
-    print(vhod)
+    # print(vhod)
 
     X_train, X_test, y_train, y_test = train_test_split(df[vhod], df['pm10'], test_size=0.3, random_state=1234)
 
@@ -40,13 +40,13 @@ def train_models():
     os.makedirs(os.path.dirname(filename), exist_ok=True)
 
     train_mae = mean_absolute_error(y_train, train_pred)
-    print(train_mae)
+    # print(train_mae)
 
     train_mse = mean_squared_error(y_train, train_pred)
-    print(train_mse)
+    # print(train_mse)
 
     train_evs = explained_variance_score(y_train, train_pred)
-    print(train_evs)
+    # print(train_evs)
 
     # reports/metrics.txt
     filename = 'reports/metrics.txt' 
@@ -54,13 +54,13 @@ def train_models():
     os.makedirs(os.path.dirname(filename), exist_ok=True)
 
     test_mae = mean_absolute_error(y_test, test_pred)
-    print(test_mae)
+    # print(test_mae)
 
     test_mse = mean_squared_error(y_test, test_pred)
-    print(test_mse)
+    # print(test_mse)
 
     test_evs = explained_variance_score(y_test, test_pred)
-    print(test_evs)
+    # print(test_evs)
 
 
     with open("reports/train_metrics.txt", "w") as f:
