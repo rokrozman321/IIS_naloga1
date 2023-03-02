@@ -1,24 +1,9 @@
-# import pytest
-# from flask import Flask
-
-# @pytest.fixture
-# def client():
-#     app = Flask(__name__)
-#     app.config['TESTING'] = True
-
-#     with app.test_client() as client:
-#         yield client
-
-# def test_test(client):
-#     response = client.get('/')
-
-#     assert response.status_code == 200
 import json 
 
+# test main if status code 200
 def test_home(client):
     response = client.get('/')
     assert response.status_code == 200
-
 
 json_file={
     "no2":36.255351616,
@@ -36,7 +21,7 @@ json_file={
     "min_do":0.0
 }
 
-
+# send json data and check if status code 200
 def test_json_data(client):
     response = response = client.post("/air/predict/", data=json.dumps(json_file), headers={"Content-Type": "application/json"})
     assert response.status_code == 200
