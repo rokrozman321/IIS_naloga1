@@ -4,6 +4,7 @@ from sklearn.experimental import enable_iterative_imputer
 from sklearn.impute import IterativeImputer
 import os
 import pandas as pd
+import time
 
 
 def process_data():
@@ -71,3 +72,20 @@ def process_data():
     os.makedirs(os.path.dirname(filename), exist_ok=True)
 
     df.to_csv(filename, index=False)
+
+def process_weather_data():
+    timestr = time.strftime("%Y%m%d-%H%M%S")
+    filename = "data/raw/weather/raw.json"
+    data_dict = pd.read_json(filename)
+    # print(data_dict)
+    temp = data_dict['hourly']
+    print(temp[0]) # ure
+    print(temp[1][0]) # temps
+    print(len(temp[0]))
+    print(len(temp[1]))
+    # filename = "data/processed/weather/" + timestr + ".json" 
+
+    # ustvarimo folder in datoteko ce se ne obstaja
+    # os.makedirs(os.path.dirname(filename), exist_ok=True)
+
+    # df.to_csv(filename, index=False)

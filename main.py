@@ -1,16 +1,19 @@
 from src import *
 
-# pridobimo podatke
-fetch_data()
+weather_data()
+process_weather_data()
 
-# uredimo podatke
-process_data()
+# # pridobimo podatke
+# fetch_data()
 
-# naucimo model
-train_models()
+# # uredimo podatke
+# process_data()
 
-# ustvarimo app
-create_app()
+# # naucimo model
+# train_models()
 
-# pozenemo aplikacijo
-run_app()
+# # ustvarimo app
+# create_app()
+
+# # pozenemo aplikacijo
+# run_app()
