@@ -1,6 +1,6 @@
 from src import *
 
-weather_data()
+# weather_data()
 process_weather_data()
 
 # # pridobimo podatke

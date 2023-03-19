@@ -74,15 +74,26 @@ def process_data():
     df.to_csv(filename, index=False)
 
 def process_weather_data():
-    timestr = time.strftime("%Y%m%d-%H%M%S")
-    filename = "data/raw/weather/raw.json"
-    data_dict = pd.read_json(filename)
+    data = json.load(open('data/raw/weather/test2.json'))
+    # print(data)
+    df = pd.DataFrame(data['days'])
+    print(df)
+    df_hours = df['hours']
+    # print(df_hours)
+    # print(df_hours[0])
+    print(df_hours[0][1]['datetime'])
+    print(df_hours[0][1]['temp'])
+    # timestr = time.strftime("%Y%m%d-%H%M%S")
+    # filename = "data/raw/weather/test.json"
+    # print("ok")
+    # data_dict = pd.read_json(filename)
     # print(data_dict)
-    temp = data_dict['hourly']
-    print(temp[0]) # ure
-    print(temp[1][0]) # temps
-    print(len(temp[0]))
-    print(len(temp[1]))
+    # print(data_dict)
+    # temp = data_dict['hourly']
+    # print(temp[0]) # ure
+    # print(temp[1][0]) # temps
+    # print(len(temp[0]))
+    # print(len(temp[1]))
     # filename = "data/processed/weather/" + timestr + ".json" 
 
     # ustvarimo folder in datoteko ce se ne obstaja

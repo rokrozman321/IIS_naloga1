@@ -5,7 +5,8 @@ import time
 
 def fetch_data():
     # kje si bomo shranili raw podatke
-    filename = "data/raw/data.json" 
+    filename = "/Vaja1/data/raw/data1.json" 
+    # filename = "/data/raw/data.json" 
     # ustvarimo folder in datoteko ce se ne obstaja
     os.makedirs(os.path.dirname(filename), exist_ok=True)
 
@@ -21,9 +22,9 @@ def fetch_data():
 def weather_data():
     timestr = time.strftime("%Y%m%d-%H%M%S")
     print(timestr)
-    filename = "data/raw/weather/" + timestr + ".json"
+    filename = "/Vaja1/data/raw/weather/" + timestr + ".json"
     os.makedirs(os.path.dirname(filename), exist_ok=True)
-    file = requests.get('https://api.open-meteo.com/v1/forecast?latitude=45.55&longitude=13.73&hourly=temperature_2m')
+    file = requests.get('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/koper/last7days?unitGroup=metric&key=X4RTJCZPEDYGRTD942B5FXABP&contentType=json')
     # pridobimo json podatke
     podatki = file.json()
 
