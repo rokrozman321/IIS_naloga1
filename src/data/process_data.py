@@ -5,8 +5,14 @@ from sklearn.impute import IterativeImputer
 import os
 import pandas as pd
 import time
+from datetime import datetime
 
 import fnmatch
+
+def convert_datetime(dt_str):
+    dt_obj = datetime.strptime(dt_str, '%Y-%m-%d %H:%M')
+    return datetime.strftime(dt_obj, '%Y-%m-%d-%H:%M:%S')
+
 
 def process_data():
     filename = "data/raw/data.json"
@@ -38,19 +44,50 @@ def process_data():
     df.sort_values(by='datum_od', inplace=True)
 
     # transform date
-    df['datum_od'] = pd.to_datetime(df['datum_od'])
-    df['leto_od'] = df['datum_od'].dt.year
-    df['mesec_od'] = df['datum_od'].dt.month
-    df['dan_od'] = df['datum_od'].dt.day
-    df['ura_od'] = df['datum_od'].dt.hour
-    df['min_od'] = df['datum_od'].dt.minute
+    # print(df['datum_od'])
+    # df['datum_od'] = pd.to_datetime(df['datum_od'])
+    # df['leto_od'] = df['datum_od'].dt.year
+    # df['mesec_od'] = df['datum_od'].dt.month
+    # df['dan_od'] = df['datum_od'].dt.day
+    # df['ura_od'] = df['datum_od'].dt.hour
+    # df['min_od'] = df['datum_od'].dt.minute
+    # new_dt_str = []
+    # for  i in range(len(df['datum_od'])):
+    #     dt_obj = datetime.strptime(df['datum_od'][i], '%Y-%m-%d %H:%M')
+    #     # convert datetime object to string in desired format
+    #     new_dt_str.append(datetime.strftime(dt_obj, '%Y-%m-%d-%H:%M:%S'))
 
-    df['datum_do'] = pd.to_datetime(df['datum_do'])
-    df['leto_do'] = df['datum_do'].dt.year
-    df['mesec_do'] = df['datum_do'].dt.month
-    df['dan_do'] = df['datum_do'].dt.day
-    df['ura_do'] = df['datum_do'].dt.hour
-    df['min_do'] = df['datum_do'].dt.minute
+    # print(new_dt_str)
+
+    df['datetime'] = df['datum_od'].apply(convert_datetime)
+    print(df)
+
+    # drop datum_od in datum_do
+    df = df.drop(['datum_od'], axis=1)
+    df = df.drop(['datum_do'], axis=1)
+    # print(df['datetime'].value_counts())
+    # drop duplicates
+    df.drop_duplicates(subset=['datetime'], inplace=True)
+    print(df)   
+    # df1 = df[df.isna().any(axis=1)]
+    # print(df1)
+    # print(df['datetime'].value_counts())
+
+    # fill missing data
+
+    imp = IterativeImputer()
+    imp.fit(df)
+    temp_df = imp.transform(df)
+    df = pd.DataFrame(temp_df, columns=df.columns)
+
+    print(df)    
+    '''
+    # df['datum_do'] = pd.to_datetime(df['datum_do'])
+    # df['leto_do'] = df['datum_do'].dt.year
+    # df['mesec_do'] = df['datum_do'].dt.month
+    # df['dan_do'] = df['datum_do'].dt.day
+    # df['ura_do'] = df['datum_do'].dt.hour
+    # df['min_do'] = df['datum_do'].dt.minute
 
     # drop datum_od in datum_do
     df = df.drop(['datum_od'], axis=1)
@@ -73,6 +110,7 @@ def process_data():
     os.makedirs(os.path.dirname(filename), exist_ok=True)
 
     df.to_csv(filename, index=False)
+    '''
 
 def process_weather_data():
     timestr = time.strftime("%Y%m%d")
