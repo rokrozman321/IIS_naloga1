@@ -74,11 +74,18 @@ def process_data():
     # print(df['datetime'].value_counts())
 
     # fill missing data
-
-    imp = IterativeImputer()
-    imp.fit(df)
-    temp_df = imp.transform(df)
-    df = pd.DataFrame(temp_df, columns=df.columns)
+    # povp
+    print(df.isnull().sum())
+    # df.fillna(df.mean())
+    df['no2'].fillna((df['no2'].mean()), inplace=True)
+    df['pm2.5'].fillna((df['pm2.5'].mean()), inplace=True)
+    df['o3'].fillna((df['o3'].mean()), inplace=True)
+    df['pm10'].fillna((df['pm10'].mean()), inplace=True)
+    print(df.isnull().sum())
+    # imp = IterativeImputer()
+    # imp.fit(df)
+    # temp_df = imp.transform(df)
+    # df = pd.DataFrame(temp_df, columns=df.columns)
 
     print(df)    
     '''
