@@ -6,6 +6,7 @@ import os
 import pandas as pd
 import time
 
+import fnmatch
 
 def process_data():
     filename = "data/raw/data.json"
@@ -74,15 +75,39 @@ def process_data():
     df.to_csv(filename, index=False)
 
 def process_weather_data():
-    data = json.load(open('data/raw/weather/test2.json'))
+    timestr = time.strftime("%Y%m%d")
+    # print(timestr)
+    string = timestr+"*.json"
+    # print(string)
+    test = fnmatch.filter(os.listdir('data/raw/weather/'), string)
+    # print(test[0])
+    data = json.load(open('data/raw/weather/'+test[0]))
+    # data1 = json.load(open('data/raw/weather/test2.json'))
     # print(data)
     df = pd.DataFrame(data['days'])
-    print(df)
+    print(df['datetime'])
     df_hours = df['hours']
     # print(df_hours)
     # print(df_hours[0])
-    print(df_hours[0][1]['datetime'])
-    print(df_hours[0][1]['temp'])
+    print(df_hours[0][23]['datetime'])
+    # print(df_hours[0][1]['temp'])
+    # print(len(df_hours[0]))
+
+    # zdruzimo datum in cas 
+    date = str(df['datetime'][0]) 
+    print(date)
+
+    for i in range(0,24):
+        if i<10:
+            print(date + "-0" + str(i) + ":00:00")
+        else:
+            print(date + "-" + str(i) + ":00:00")
+
+
+
+
+
+
     # timestr = time.strftime("%Y%m%d-%H%M%S")
     # filename = "data/raw/weather/test.json"
     # print("ok")

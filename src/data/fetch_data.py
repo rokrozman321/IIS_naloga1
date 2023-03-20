@@ -22,7 +22,8 @@ def fetch_data():
 def weather_data():
     timestr = time.strftime("%Y%m%d-%H%M%S")
     print(timestr)
-    filename = "/Vaja1/data/raw/weather/" + timestr + ".json"
+    # filename = "/Vaja1/data/raw/weather/" + timestr + ".json"
+    filename = "data/raw/weather/" + timestr + ".json"
     os.makedirs(os.path.dirname(filename), exist_ok=True)
     file = requests.get('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/koper/last7days?unitGroup=metric&key=X4RTJCZPEDYGRTD942B5FXABP&contentType=json')
     # pridobimo json podatke
