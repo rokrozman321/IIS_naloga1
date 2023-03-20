@@ -15,6 +15,7 @@ joblib = "^1.2.0"
 flask = "^2.2.3"
 pytest = "^7.2.1"
 dvc = "^2.51.0"
+dvc-gdrive = "^2.19.1"
 
 
 [build-system]
