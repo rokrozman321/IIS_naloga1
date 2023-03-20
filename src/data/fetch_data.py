@@ -4,9 +4,10 @@ import os
 import time
 
 def fetch_data():
+    print("Fetch arso data")
     # kje si bomo shranili raw podatke
-    filename = "/Vaja1/data/raw/data1.json" 
-    # filename = "/data/raw/data.json" 
+    filename = "data/raw/data.json" 
+
     # ustvarimo folder in datoteko ce se ne obstaja
     os.makedirs(os.path.dirname(filename), exist_ok=True)
 
@@ -20,10 +21,8 @@ def fetch_data():
         json.dump(podatki, f)
 
 def weather_data():
-    timestr = time.strftime("%Y%m%d-%H%M%S")
-    print(timestr)
-    # filename = "/Vaja1/data/raw/weather/" + timestr + ".json"
-    filename = "data/raw/weather/" + timestr + ".json"
+    print("Fetch air data")
+    filename = "data/raw/weather/air_data.json"
     os.makedirs(os.path.dirname(filename), exist_ok=True)
     file = requests.get('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/koper/last7days?unitGroup=metric&key=X4RTJCZPEDYGRTD942B5FXABP&contentType=json')
     # pridobimo json podatke

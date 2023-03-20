@@ -1,8 +1,12 @@
 from src import *
 
+# fetch_data()
 # weather_data()
-process_data()
+
+# process_data()
 # process_weather_data()
+
+merge_data()
 
 # # pridobimo podatke
 # fetch_data()

@@ -15,6 +15,7 @@ def convert_datetime(dt_str):
 
 
 def process_data():
+    print("Process arso data")
     filename = "data/raw/data.json"
     data_dict = pd.read_json(filename)
 
@@ -43,21 +44,6 @@ def process_data():
     # sort
     df.sort_values(by='datum_od', inplace=True)
 
-    # transform date
-    # print(df['datum_od'])
-    # df['datum_od'] = pd.to_datetime(df['datum_od'])
-    # df['leto_od'] = df['datum_od'].dt.year
-    # df['mesec_od'] = df['datum_od'].dt.month
-    # df['dan_od'] = df['datum_od'].dt.day
-    # df['ura_od'] = df['datum_od'].dt.hour
-    # df['min_od'] = df['datum_od'].dt.minute
-    # new_dt_str = []
-    # for  i in range(len(df['datum_od'])):
-    #     dt_obj = datetime.strptime(df['datum_od'][i], '%Y-%m-%d %H:%M')
-    #     # convert datetime object to string in desired format
-    #     new_dt_str.append(datetime.strftime(dt_obj, '%Y-%m-%d-%H:%M:%S'))
-
-    # print(new_dt_str)
 
     df['datetime'] = df['datum_od'].apply(convert_datetime)
     print(df)
@@ -65,13 +51,8 @@ def process_data():
     # drop datum_od in datum_do
     df = df.drop(['datum_od'], axis=1)
     df = df.drop(['datum_do'], axis=1)
-    # print(df['datetime'].value_counts())
-    # drop duplicates
     df.drop_duplicates(subset=['datetime'], inplace=True)
     print(df)   
-    # df1 = df[df.isna().any(axis=1)]
-    # print(df1)
-    # print(df['datetime'].value_counts())
 
     # fill missing data
     # povp
@@ -82,65 +63,29 @@ def process_data():
     df['o3'].fillna((df['o3'].mean()), inplace=True)
     df['pm10'].fillna((df['pm10'].mean()), inplace=True)
     print(df.isnull().sum())
-    # imp = IterativeImputer()
-    # imp.fit(df)
-    # temp_df = imp.transform(df)
-    # df = pd.DataFrame(temp_df, columns=df.columns)
 
     print(df)    
-    '''
-    # df['datum_do'] = pd.to_datetime(df['datum_do'])
-    # df['leto_do'] = df['datum_do'].dt.year
-    # df['mesec_do'] = df['datum_do'].dt.month
-    # df['dan_do'] = df['datum_do'].dt.day
-    # df['ura_do'] = df['datum_do'].dt.hour
-    # df['min_do'] = df['datum_do'].dt.minute
-
-    # drop datum_od in datum_do
-    df = df.drop(['datum_od'], axis=1)
-    df = df.drop(['datum_do'], axis=1)
-
-
-    df1 = df[df.isna().any(axis=1)]
-
-    # fill missing data
-
-    imp = IterativeImputer()
-    imp.fit(df)
-    temp_df = imp.transform(df)
-    df = pd.DataFrame(temp_df, columns=df.columns)
-
+    
     # kje si bomo shranili raw podatke
-    filename = "data/processed/data.csv" 
+    filename = "data/processed/arso_data.csv" 
 
     # ustvarimo folder in datoteko ce se ne obstaja
     os.makedirs(os.path.dirname(filename), exist_ok=True)
 
     df.to_csv(filename, index=False)
-    '''
 
 def process_weather_data():
-    timestr = time.strftime("%Y%m%d")
-    # print(timestr)
-    string = timestr+"*.json"
-    # print(string)
-    test = fnmatch.filter(os.listdir('data/raw/weather/'), string)
-    # print(test[0])
-    data = json.load(open('data/raw/weather/'+test[0]))
-    # data1 = json.load(open('data/raw/weather/test2.json'))
-    # print(data)
+    print("Process weather data")
+    data = json.load(open('data/raw/weather/air_data.json'))
     df = pd.DataFrame(data['days'])
-    print(df['datetime'])
+    # print(df['datetime'])
     df_hours = df['hours']
-    # print(df_hours)
-    # print(df_hours[0])
-    print(df_hours[6][23]['datetime'])
-    print(df_hours[6][23]['temp'])
-    # print(len(df_hours[0]))
+    # print(df_hours[6][23]['datetime'])
+    # print(df_hours[6][23]['temp'])
 
     # zdruzimo datum in cas 
     date = str(df['datetime'][7]) 
-    print(date)
+    # print(date)
     temps = []
     datetimes = []
 
@@ -153,55 +98,53 @@ def process_weather_data():
                 datetime_v = date1 + '-' + time1
                 datetimes.append(datetime_v)
                 temps.append(temp1)
-                # print('i: ', i)
-                # print('j: ', j)
-                # print('date', date1)
-                # print('time', time1)
-                # print('temp', temp1)
 
-    print(datetimes)
-    print(temps)
+    # print(datetimes)
+    # print(temps)
     
     # preverimo ce se ujema
-    print(datetimes[1])
-    print(temps[1])
+    # print(datetimes[1])
+    # print(temps[1])
 
-    print(df['datetime'][0])
-    print(df_hours[0][1]['datetime'])
-    print(df_hours[0][1]['temp'])
+    # print(df['datetime'][0])
+    # print(df_hours[0][1]['datetime'])
+    # print(df_hours[0][1]['temp'])
 
     df2 = pd.DataFrame()
     df2['datetime'] = datetimes
     df2['temps'] = temps
 
     print(df2)
-
-
-    # for i in range(0,24):
-    #     if i<10:
-    #         print(date + "-0" + str(i) + ":00:00")
-    #     else:
-    #         print(date + "-" + str(i) + ":00:00")
-
-
-
-
-
-
-    # timestr = time.strftime("%Y%m%d-%H%M%S")
-    # filename = "data/raw/weather/test.json"
-    # print("ok")
-    # data_dict = pd.read_json(filename)
-    # print(data_dict)
-    # print(data_dict)
-    # temp = data_dict['hourly']
-    # print(temp[0]) # ure
-    # print(temp[1][0]) # temps
-    # print(len(temp[0]))
-    # print(len(temp[1]))
-    # filename = "data/processed/weather/" + timestr + ".json" 
+    
+    # kje si bomo shranili raw podatke
+    filename = "data/processed/air_data.csv" 
 
     # ustvarimo folder in datoteko ce se ne obstaja
-    # os.makedirs(os.path.dirname(filename), exist_ok=True)
+    os.makedirs(os.path.dirname(filename), exist_ok=True)
 
-    # df.to_csv(filename, index=False)
+    df2.to_csv(filename, index=False)
+
+def merge_data():
+    print("Merge data")
+    file1 = "data/processed/air_data.csv" 
+    file2 = "data/processed/arso_data.csv" 
+
+    df1 = pd.read_csv(file1)
+    df2 = pd.read_csv(file2)
+
+    # print(df1)
+    # print(df2)
+
+    df_l = pd.merge(df1, df2, on="datetime", how="left")
+
+    # print(df_l.isnull().sum())
+
+    print(df_l)
+
+    # kje si bomo shranili raw podatke
+    filename = "data/processed/merged.csv" 
+
+    # ustvarimo folder in datoteko ce se ne obstaja
+    os.makedirs(os.path.dirname(filename), exist_ok=True)
+
+    df_l.to_csv(filename, index=False)
