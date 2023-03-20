@@ -89,19 +89,54 @@ def process_weather_data():
     df_hours = df['hours']
     # print(df_hours)
     # print(df_hours[0])
-    print(df_hours[0][23]['datetime'])
-    # print(df_hours[0][1]['temp'])
+    print(df_hours[6][23]['datetime'])
+    print(df_hours[6][23]['temp'])
     # print(len(df_hours[0]))
 
     # zdruzimo datum in cas 
-    date = str(df['datetime'][0]) 
+    date = str(df['datetime'][7]) 
     print(date)
+    temps = []
+    datetimes = []
 
-    for i in range(0,24):
-        if i<10:
-            print(date + "-0" + str(i) + ":00:00")
-        else:
-            print(date + "-" + str(i) + ":00:00")
+    for i in range(0,8):
+        for j in range(0,24):
+            # if j<10:
+                date1 = df['datetime'][i]
+                time1 = df_hours[i][j]['datetime']
+                temp1 = df_hours[i][j]['temp']
+                datetime_v = date1 + '-' + time1
+                datetimes.append(datetime_v)
+                temps.append(temp1)
+                # print('i: ', i)
+                # print('j: ', j)
+                # print('date', date1)
+                # print('time', time1)
+                # print('temp', temp1)
+
+    print(datetimes)
+    print(temps)
+    
+    # preverimo ce se ujema
+    print(datetimes[1])
+    print(temps[1])
+
+    print(df['datetime'][0])
+    print(df_hours[0][1]['datetime'])
+    print(df_hours[0][1]['temp'])
+
+    df2 = pd.DataFrame()
+    df2['datetime'] = datetimes
+    df2['temps'] = temps
+
+    print(df2)
+
+
+    # for i in range(0,24):
+    #     if i<10:
+    #         print(date + "-0" + str(i) + ":00:00")
+    #     else:
+    #         print(date + "-" + str(i) + ":00:00")
 
 
 
