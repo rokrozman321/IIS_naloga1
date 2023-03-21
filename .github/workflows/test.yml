@@ -3,7 +3,7 @@ name: Testing with pytest
 on: push
 
 jobs:
-  test:
+  test_api:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
