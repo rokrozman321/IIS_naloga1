@@ -36,3 +36,19 @@ jobs:
         run: |
           source .venv/bin/activate
           pytest tests/arso_test.py
+      
+      - name: Fetch arso data
+        run: |
+          source .venv/bin/activate
+          python src/data/fetch_arso_data.py
+      - name: DVC add
+        run: |
+          dvc add data/raw/data.json
+      - name: Commit changes
+        run: |
+          git add .
+          git commit -m "Raw arso data with GitHub Actions"
+      - name: Push 
+        uses: ad-m/github-push-action@master
+        run: |
+          git push
