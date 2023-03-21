@@ -47,6 +47,8 @@ jobs:
           dvc add data/raw/data.json
       - name: Commit changes
         run: |
+          git config --global user.name 'Rok Rozman'
+          git config --global user.email 'rok.rozman2@student.um.si'
           git add .
           git commit -m "Raw arso data with GitHub Actions"
       - name: Push 
