@@ -265,13 +265,12 @@ jobs:
           dvc remote modify origin --local auth basic 
           dvc remote modify origin --local user rokrozman321 
           dvc remote modify origin --local password ${{ secrets.DAGSHUB_PASSWORD }}
-          dvc push
 
       - name: Commit changes
         run: |
           git config --global user.name 'Rok Rozman'
           git config --global user.email 'rok.rozman2@student.um.si'
-          git add data/processed/air_data.csv.dvc 
+          git add data/processed/air_data.csv.dvc
           git commit -m "Process air data with GitHub Actions"
 
       - name: Push changes
