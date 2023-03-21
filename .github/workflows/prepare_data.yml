@@ -207,7 +207,7 @@ jobs:
           branch: ${{ github.ref }}
 
   process_air_data:
-    # needs: fetch_air_data
+    needs: fetch_air_data
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
