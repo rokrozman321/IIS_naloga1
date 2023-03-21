@@ -33,9 +33,9 @@ jobs:
           source .venv/bin/activate
           pytest tests/arso_test.py
 
-      - name: Pull 
-        run: |
-          git pull
+      # - name: Pull 
+      #   run: |
+      #     git pull
 
       - name: Fetch arso data
         run: |
@@ -93,9 +93,9 @@ jobs:
       - name: Install project
         run: poetry install --no-interaction
 
-      - name: Pull 
-        run: |
-          git pull
+      # - name: Pull 
+      #   run: |
+      #     git pull
 
       - name: Pull data DVC
         run: |
@@ -104,6 +104,10 @@ jobs:
           dvc remote modify origin --local user rokrozman321 
           dvc remote modify origin --local password ${{ secrets.DAGSHUB_PASSWORD }}
           dvc pull
+
+      - name: Pull 
+        run: |
+          git pull
 
       - name: Process arso data
         run: |
@@ -163,9 +167,9 @@ jobs:
           source .venv/bin/activate
           pytest tests/air_test.py
 
-      - name: Pull 
-        run: |
-          git pull
+      # - name: Pull 
+        # run: |
+          # git pull
 
       - name: Fetch air data
         run: |
@@ -180,6 +184,10 @@ jobs:
           dvc remote modify origin --local user rokrozman321 
           dvc remote modify origin --local password ${{ secrets.DAGSHUB_PASSWORD }}
           dvc push
+
+      - name: Pull 
+        run: |
+          git pull
 
       - name: Commit changes
         run: |
@@ -226,9 +234,9 @@ jobs:
       - name: Install project
         run: poetry install --no-interaction
 
-      - name: Pull 
-        run: |
-          git pull
+      # - name: Pull 
+      #   run: |
+      #     git pull
 
       - name: Pull data DVC
         run: |
@@ -237,6 +245,10 @@ jobs:
           dvc remote modify origin --local user rokrozman321 
           dvc remote modify origin --local password ${{ secrets.DAGSHUB_PASSWORD }}
           dvc pull
+
+      - name: Pull 
+        run: |
+          git pull
 
       - name: Process air data
         run: |
@@ -293,9 +305,9 @@ jobs:
       - name: Install project
         run: poetry install --no-interaction
 
-      - name: Pull 
-        run: |
-          git pull
+      # - name: Pull 
+      #   run: |
+      #     git pull
 
       - name: Pull data DVC
         run: |
@@ -304,6 +316,10 @@ jobs:
           dvc remote modify origin --local user rokrozman321 
           dvc remote modify origin --local password ${{ secrets.DAGSHUB_PASSWORD }}
           dvc pull
+
+      - name: Pull 
+        run: |
+          git pull
 
       - name: Merge data
         run: |
