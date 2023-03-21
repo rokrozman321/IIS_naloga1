@@ -49,6 +49,6 @@ jobs:
           git add .
           git commit -m "Raw arso data with GitHub Actions"
       - name: Push 
-        uses: ad-m/github-push-action@master
+        # uses: ad-m/github-push-action@master
         run: |
           git push
