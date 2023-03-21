@@ -52,6 +52,8 @@ jobs:
           git add .
           git commit -m "Raw arso data with GitHub Actions"
       - name: Push 
-        # uses: ad-m/github-push-action@master
-        run: |
-          git push https://${{ secrets.GITHUB_TOKEN }}@github.com/rokrozman321/IIS_naloga1.git
+        uses: ad-m/github-push-action@master
+        with: 
+          github_token: ${{ secrets.MY_TOKEN }}
+        
+
