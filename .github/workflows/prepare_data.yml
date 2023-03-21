@@ -63,7 +63,7 @@ jobs:
   #         branch: ${{ github.ref }}
 
   process_arso_data:
-    needs: fetch_arso_data
+    # needs: fetch_arso_data
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
