@@ -25,3 +25,5 @@ json_file={
 def test_json_data(client):
     response = response = client.post("/air/predict/", data=json.dumps(json_file), headers={"Content-Type": "application/json"})
     assert response.status_code == 200
+
+
