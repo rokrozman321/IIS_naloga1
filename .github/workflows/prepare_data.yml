@@ -107,7 +107,7 @@ jobs:
 
       - name: Pull 
         run: |
-      #     git pull
+          git pull
 
       - name: Process arso data
         run: |
