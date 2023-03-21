@@ -48,7 +48,7 @@ jobs:
           dvc remote modify origin --local auth basic 
           dvc remote modify origin --local user rokrozman321 
           dvc remote modify origin --local password ${{ secrets.DAGSHUB_PASSWORD }}
-  # dvc push
+          dvc push
       - name: Commit changes
         run: |
           git config --global user.name 'Rok Rozman'
