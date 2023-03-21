@@ -1,4 +1,4 @@
 [core]
-    remote = storage
-['remote "storage"']
-    url = gdrive://1DwLKqW2fXUW-zKSgfyr1OgQLLJiE0Ew_
+    remote = origin
+['remote "origin"']
+    url = https://dagshub.com/rokrozman321/IIS_vaja3.dvc
