@@ -94,9 +94,9 @@ jobs:
       - name: Install project
         run: poetry install --no-interaction
 
-      # - name: Pull 
-      #   run: |
-      #     git pull
+      - name: Pull 
+        run: |
+          git pull
 
       - name: Pull data DVC
         run: |
@@ -106,9 +106,9 @@ jobs:
           dvc remote modify origin --local password ${{ secrets.DAGSHUB_PASSWORD }}
           dvc pull
 
-      - name: Pull 
-        run: |
-          git pull
+      # - name: Pull 
+      #   run: |
+      #     git pull
 
       - name: Process arso data
         run: |
