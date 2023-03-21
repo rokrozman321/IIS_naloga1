@@ -1,5 +1,9 @@
 name: Prepare data 
-on: push
+on:
+  schedule:
+    - cron: '0 10 * * *'
+    # vsaki dan ob 10ih
+
 jobs:
   fetch_arso_data:
     runs-on: ubuntu-latest
