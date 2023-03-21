@@ -35,4 +35,4 @@ jobs:
       - name: Run arso data test
         run: |
           source .venv/bin/activate
-          pytest test/arso_test.py
+          pytest tests/arso_test.py
