@@ -53,7 +53,7 @@ jobs:
         run: |
           git config --global user.name 'Rok Rozman'
           git config --global user.email 'rok.rozman2@student.um.si'
-          git add .
+          git add data/raw/data.json.dvc
           git commit -m "Raw arso data with GitHub Actions"
       - name: Push changes
         uses: ad-m/github-push-action@master
@@ -105,7 +105,7 @@ jobs:
           dvc remote modify origin --local password ${{ secrets.DAGSHUB_PASSWORD }}
           dvc pull
 
-      - name: Pull 
+      - name: Git pull 
         run: |
           git pull
 
