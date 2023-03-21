@@ -127,7 +127,7 @@ jobs:
         run: |
           git config --global user.name 'Rok Rozman'
           git config --global user.email 'rok.rozman2@student.um.si'
-          git add data/processed/arso_data.csv.dvc
+          git add data/raw/weather/air_data.json.dvc
           git commit -m "Process arso data with GitHub Actions"
 
       - name: Push changes
@@ -197,7 +197,7 @@ jobs:
         run: |
           git config --global user.name 'Rok Rozman'
           git config --global user.email 'rok.rozman2@student.um.si'
-          git add .
+          git add . 
           git commit -m "Raw air data with GitHub Actions"
 
       - name: Push changes
