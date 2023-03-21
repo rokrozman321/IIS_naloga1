@@ -84,20 +84,28 @@ jobs:
       - name: Install project
         run: poetry install --no-interaction
 
+      - name: Pull data DVC
+        run: |
+          source .venv/bin/activate
+          dvc pull
+
       - name: Process arso data
         run: |
           source .venv/bin/activate
           python src/data/process_arso_data.py
+
       - name: DVC add
         run: |
           source .venv/bin/activate
           dvc add data/processed/arso_data.json
+
       - name: Commit changes
         run: |
           git config --global user.name 'Rok Rozman'
           git config --global user.email 'rok.rozman2@student.um.si'
           git add .
           git commit -m "Process arso data with GitHub Actions"
+          
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
