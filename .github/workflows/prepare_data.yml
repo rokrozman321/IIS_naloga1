@@ -171,9 +171,9 @@ jobs:
           source .venv/bin/activate
           pytest tests/air_test.py
 
-      - name: Pull 
-        run: |
-          git pull
+      # - name: Pull 
+      #   run: |
+      #     git pull
 
       - name: Fetch air data
         run: |
