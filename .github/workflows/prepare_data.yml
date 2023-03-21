@@ -189,9 +189,9 @@ jobs:
           dvc remote modify origin --local password ${{ secrets.DAGSHUB_PASSWORD }}
           dvc push
 
-      # - name: Pull 
-      #   run: |
-      #     git pull
+      - name: Pull 
+        run: |
+          git pull
 
       - name: Commit changes
         run: |
