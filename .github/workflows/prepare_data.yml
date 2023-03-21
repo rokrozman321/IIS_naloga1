@@ -133,215 +133,215 @@ jobs:
           github_token: ${{ secrets.MY_TOKEN }}
           branch: ${{ github.ref }}
 
-  # fetch_air_data:
-  #   needs: process_arso_data
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Check out repository
-  #       uses: actions/checkout@v3
-  #     - name: Set up python
-  #       id: setup-python
-  #       uses: actions/setup-python@v4
-  #       with:
-  #         python-version: '3.9'
-  #     - name: Install Poetry
-  #       uses: snok/install-poetry@v1
-  #       with:
-  #         virtualenvs-create: true
-  #         virtualenvs-in-project: true
-  #         installer-parallel: true
-  #     - name: Load cached venv
-  #       id: cached-poetry-dependencies
-  #       uses: actions/cache@v3
-  #       with:
-  #         path: .venv
-  #         key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
-  #     - name: Install dependencies
-  #       if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-  #       run: poetry install --no-interaction --no-root
+  fetch_air_data:
+    needs: process_arso_data
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Set up python
+        id: setup-python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          installer-parallel: true
+      - name: Load cached venv
+        id: cached-poetry-dependencies
+        uses: actions/cache@v3
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+      - name: Install dependencies
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        run: poetry install --no-interaction --no-root
 
-  #     - name: Install project
-  #       run: poetry install --no-interaction
+      - name: Install project
+        run: poetry install --no-interaction
 
-  #     - name: Run air data test
-  #       run: |
-  #         source .venv/bin/activate
-  #         pytest tests/air_test.py
+      - name: Run air data test
+        run: |
+          source .venv/bin/activate
+          pytest tests/air_test.py
 
-  #     # - name: Pull 
-  #       # run: |
-  #         # git pull
+      # - name: Pull 
+        # run: |
+          # git pull
 
-  #     - name: Fetch air data
-  #       run: |
-  #         source .venv/bin/activate
-  #         python src/data/fetch_air_data.py
+      - name: Fetch air data
+        run: |
+          source .venv/bin/activate
+          python src/data/fetch_air_data.py
 
-  #     - name: DVC add
-  #       run: |
-  #         source .venv/bin/activate
-  #         dvc add data/raw/weather/air_data.json
-  #         dvc remote modify origin --local auth basic 
-  #         dvc remote modify origin --local user rokrozman321 
-  #         dvc remote modify origin --local password ${{ secrets.DAGSHUB_PASSWORD }}
-  #         dvc push
+      - name: DVC add
+        run: |
+          source .venv/bin/activate
+          dvc add data/raw/weather/air_data.json
+          dvc remote modify origin --local auth basic 
+          dvc remote modify origin --local user rokrozman321 
+          dvc remote modify origin --local password ${{ secrets.DAGSHUB_PASSWORD }}
+          dvc push
 
-  #     - name: Pull 
-  #       run: |
-  #         git pull
+      - name: Pull 
+        run: |
+          git pull
 
-  #     - name: Commit changes
-  #       run: |
-  #         git config --global user.name 'Rok Rozman'
-  #         git config --global user.email 'rok.rozman2@student.um.si'
-  #         git add .
-  #         git commit -m "Raw air data with GitHub Actions"
+      - name: Commit changes
+        run: |
+          git config --global user.name 'Rok Rozman'
+          git config --global user.email 'rok.rozman2@student.um.si'
+          git add .
+          git commit -m "Raw air data with GitHub Actions"
 
-  #     - name: Push changes
-  #       uses: ad-m/github-push-action@master
-  #       with:
-  #         github_token: ${{ secrets.MY_TOKEN }}
-  #         branch: ${{ github.ref }}
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.MY_TOKEN }}
+          branch: ${{ github.ref }}
 
-  # process_air_data:
-  #   needs: fetch_air_data
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Check out repository
-  #       uses: actions/checkout@v3
-  #     - name: Set up python
-  #       id: setup-python
-  #       uses: actions/setup-python@v4
-  #       with:
-  #         python-version: '3.9'
-  #     - name: Install Poetry
-  #       uses: snok/install-poetry@v1
-  #       with:
-  #         virtualenvs-create: true
-  #         virtualenvs-in-project: true
-  #         installer-parallel: true
+  process_air_data:
+    needs: fetch_air_data
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Set up python
+        id: setup-python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          installer-parallel: true
 
-  #     - name: Load cached venv
-  #       id: cached-poetry-dependencies
-  #       uses: actions/cache@v3
-  #       with:
-  #         path: .venv
-  #         key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+      - name: Load cached venv
+        id: cached-poetry-dependencies
+        uses: actions/cache@v3
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
 
-  #     - name: Install dependencies
-  #       if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-  #       run: poetry install --no-interaction --no-root
+      - name: Install dependencies
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        run: poetry install --no-interaction --no-root
 
-  #     - name: Install project
-  #       run: poetry install --no-interaction
+      - name: Install project
+        run: poetry install --no-interaction
 
-  #     # - name: Pull 
-  #     #   run: |
-  #     #     git pull
+      # - name: Pull 
+      #   run: |
+      #     git pull
 
-  #     - name: Pull data DVC
-  #       run: |
-  #         source .venv/bin/activate
-  #         dvc remote modify origin --local auth basic 
-  #         dvc remote modify origin --local user rokrozman321 
-  #         dvc remote modify origin --local password ${{ secrets.DAGSHUB_PASSWORD }}
-  #         dvc pull
+      - name: Pull data DVC
+        run: |
+          source .venv/bin/activate
+          dvc remote modify origin --local auth basic 
+          dvc remote modify origin --local user rokrozman321 
+          dvc remote modify origin --local password ${{ secrets.DAGSHUB_PASSWORD }}
+          dvc pull
 
-  #     - name: Pull 
-  #       run: |
-  #         git pull
+      - name: Pull 
+        run: |
+          git pull
 
-  #     - name: Process air data
-  #       run: |
-  #         source .venv/bin/activate
-  #         python src/data/process_air_data.py
+      - name: Process air data
+        run: |
+          source .venv/bin/activate
+          python src/data/process_air_data.py
 
-  #     - name: DVC add
-  #       run: |
-  #         source .venv/bin/activate
-  #         dvc add data/processed/air_data.csv
+      - name: DVC add
+        run: |
+          source .venv/bin/activate
+          dvc add data/processed/air_data.csv
 
-  #     - name: Commit changes
-  #       run: |
-  #         git config --global user.name 'Rok Rozman'
-  #         git config --global user.email 'rok.rozman2@student.um.si'
-  #         git add .
-  #         git commit -m "Process air data with GitHub Actions"
+      - name: Commit changes
+        run: |
+          git config --global user.name 'Rok Rozman'
+          git config --global user.email 'rok.rozman2@student.um.si'
+          git add .
+          git commit -m "Process air data with GitHub Actions"
 
-  #     - name: Push changes
-  #       uses: ad-m/github-push-action@master
-  #       with:
-  #         github_token: ${{ secrets.MY_TOKEN }}
-  #         branch: ${{ github.ref }}
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.MY_TOKEN }}
+          branch: ${{ github.ref }}
 
-  # merge_data:
-  #   needs: process_air_data
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Check out repository
-  #       uses: actions/checkout@v3
-  #     - name: Set up python
-  #       id: setup-python
-  #       uses: actions/setup-python@v4
-  #       with:
-  #         python-version: '3.9'
-  #     - name: Install Poetry
-  #       uses: snok/install-poetry@v1
-  #       with:
-  #         virtualenvs-create: true
-  #         virtualenvs-in-project: true
-  #         installer-parallel: true
+  merge_data:
+    needs: process_air_data
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Set up python
+        id: setup-python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          installer-parallel: true
 
-  #     - name: Load cached venv
-  #       id: cached-poetry-dependencies
-  #       uses: actions/cache@v3
-  #       with:
-  #         path: .venv
-  #         key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+      - name: Load cached venv
+        id: cached-poetry-dependencies
+        uses: actions/cache@v3
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
 
-  #     - name: Install dependencies
-  #       if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-  #       run: poetry install --no-interaction --no-root
+      - name: Install dependencies
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        run: poetry install --no-interaction --no-root
 
-  #     - name: Install project
-  #       run: poetry install --no-interaction
+      - name: Install project
+        run: poetry install --no-interaction
 
-  #     # - name: Pull 
-  #     #   run: |
-  #     #     git pull
+      # - name: Pull 
+      #   run: |
+      #     git pull
 
-  #     - name: Pull data DVC
-  #       run: |
-  #         source .venv/bin/activate
-  #         dvc remote modify origin --local auth basic 
-  #         dvc remote modify origin --local user rokrozman321 
-  #         dvc remote modify origin --local password ${{ secrets.DAGSHUB_PASSWORD }}
-  #         dvc pull
+      - name: Pull data DVC
+        run: |
+          source .venv/bin/activate
+          dvc remote modify origin --local auth basic 
+          dvc remote modify origin --local user rokrozman321 
+          dvc remote modify origin --local password ${{ secrets.DAGSHUB_PASSWORD }}
+          dvc pull
 
-  #     - name: Pull 
-  #       run: |
-  #         git pull
+      - name: Pull 
+        run: |
+          git pull
 
-  #     - name: Merge data
-  #       run: |
-  #         source .venv/bin/activate
-  #         python src/data/merge_data.py
+      - name: Merge data
+        run: |
+          source .venv/bin/activate
+          python src/data/merge_data.py
 
-  #     - name: DVC add
-  #       run: |
-  #         source .venv/bin/activate
-  #         dvc add data/processed/merged.csv
+      - name: DVC add
+        run: |
+          source .venv/bin/activate
+          dvc add data/processed/merged.csv
 
-  #     - name: Commit changes
-  #       run: |
-  #         git config --global user.name 'Rok Rozman'
-  #         git config --global user.email 'rok.rozman2@student.um.si'
-  #         git add .
-  #         git commit -m "Merged data with GitHub Actions"
+      - name: Commit changes
+        run: |
+          git config --global user.name 'Rok Rozman'
+          git config --global user.email 'rok.rozman2@student.um.si'
+          git add .
+          git commit -m "Merged data with GitHub Actions"
 
-  #     - name: Push changes
-  #       uses: ad-m/github-push-action@master
-  #       with:
-  #         github_token: ${{ secrets.MY_TOKEN }}
-  #         branch: ${{ github.ref }}
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.MY_TOKEN }}
+          branch: ${{ github.ref }}
   
