@@ -51,9 +51,13 @@ jobs:
           git config --global user.email 'rok.rozman2@student.um.si'
           git add .
           git commit -m "Raw arso data with GitHub Actions"
-      - name: Push 
-        uses: ad-m/github-push-action@master
-        with: 
-          github_token: ${{ secrets.MY_TOKEN }}
+          git push
+      
+      
+      
+      # - name: Push 
+        # uses: ad-m/github-push-action@master
+        # with: 
+          # github_token: ${{ secrets.MY_TOKEN }}
         
 
