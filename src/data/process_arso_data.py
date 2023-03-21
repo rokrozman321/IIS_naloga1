@@ -72,6 +72,7 @@ def process_data():
     # ustvarimo folder in datoteko ce se ne obstaja
     os.makedirs(os.path.dirname(filename), exist_ok=True)
 
+    print("Shranjujemo v datoteko: " + filename)
     df.to_csv(filename, index=False)
 
 process_data()

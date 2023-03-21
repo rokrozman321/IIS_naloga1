@@ -16,6 +16,7 @@ def fetch_data():
     # pridobimo json podatke
     podatki = file.json()
 
+    print("Shranjujemo v datoteko: " + filename)
     # zapisemo podatke v datoteko
     with open(filename, 'w') as f:
         json.dump(podatki, f)
