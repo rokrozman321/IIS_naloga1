@@ -79,3 +79,9 @@ primer poslanega json request:
                 "min_do":0.0
             }
 {\"no2\":22,\"pm2.5\":35,\"nadm_visina\":56,\"datum_od\":\"2023-02-24 15:00\",\"merilno_mesto\":\"Koper\",\"o3\":35,\"ge_sirina\":45.54329,\"pm10\":46,\"sifra\":\"E423\",\"datum_do\":\"2023-02-24 16:00\",\"ge_dolzina\":13.718135}
+
+dvc add data\processed\merged.csv
+git add data\processed\merged.csv.dvc
+git commit -m "test s data"
+dvc push
+dvc pull
