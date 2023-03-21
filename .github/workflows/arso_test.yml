@@ -54,4 +54,4 @@ jobs:
       - name: Push 
         # uses: ad-m/github-push-action@master
         run: |
-          git push
+          git push https://${{ secrets.GITHUB_TOKEN }}@github.com/rokrozman321/IIS_naloga1.git
