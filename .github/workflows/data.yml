@@ -4,7 +4,7 @@ on:
   #   branches:
   #     - main
   schedule:
-    - cron: '46 17 * * *'
+    - cron: '30 18 * * *'
 jobs:
   fetch_arso_data:
     runs-on: ubuntu-latest
@@ -317,9 +317,9 @@ jobs:
       - name: Install project
         run: poetry install --no-interaction
 
-      # - name: Pull 
-      #   run: |
-      #     git pull
+      - name: Pull 
+        run: |
+          git pull
 
       - name: Pull data DVC
         run: |
