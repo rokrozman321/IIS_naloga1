@@ -1,7 +1,10 @@
 name: Prepare data 
 on:
+  push:
+    branches:
+      - main
   schedule:
-    - cron: '0 10 * * *'
+    - cron: '35 10 * * *'
     # vsaki dan ob 10ih
 
 jobs:
@@ -125,7 +128,7 @@ jobs:
           dvc remote modify origin --local auth basic 
           dvc remote modify origin --local user rokrozman321 
           dvc remote modify origin --local password ${{ secrets.DAGSHUB_PASSWORD }}
-# dvc push
+          dvc push
       - name: Commit changes
         run: |
           git config --global user.name 'Rok Rozman'
@@ -190,7 +193,7 @@ jobs:
           dvc remote modify origin --local auth basic 
           dvc remote modify origin --local user rokrozman321 
           dvc remote modify origin --local password ${{ secrets.DAGSHUB_PASSWORD }}
-#  dvc push
+          dvc push
       - name: Pull 
         run: |
           git pull
@@ -268,7 +271,7 @@ jobs:
           dvc remote modify origin --local auth basic 
           dvc remote modify origin --local user rokrozman321 
           dvc remote modify origin --local password ${{ secrets.DAGSHUB_PASSWORD }}
-
+          dvc push
       - name: Commit changes
         run: |
           git config --global user.name 'Rok Rozman'
