@@ -14,7 +14,7 @@ def predict():
     
     data = request.get_json() # pridobimo json file
     df = pd.DataFrame.from_dict([data]) # shranimo json file v df
-    # print(df)
+    print(df)
     model_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'models', 'model1.joblib')
     loaded_model = joblib.load(model_path)  
     # # napovemo vrednost

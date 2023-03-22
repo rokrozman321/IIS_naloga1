@@ -7,19 +7,25 @@ import h5py
 import joblib
 
 def train_models():
-    filename = "data/processed/data.csv" 
+    print("Train model")
+    filename = 'data/processed/merged.csv'
     df = pd.read_csv(filename)
     # print(df)
 
-    # print(df.isnull().sum())
+    df['time'] = pd.to_datetime(df['datetime'])
+    df.sort_values(by='time', inplace=True)
+    df = df.drop(['datetime'], axis=1)
+    # print(df)
+    df = df.drop(['time'], axis=1)
+    # print(df)
 
-    columns = df.columns
-    vhod = columns.tolist()
-    vhod.remove('pm10')
+    X = df[['pm2.5', 'o3', 'no2', 'temps']]
+    y = df['pm10']
 
-    # print(vhod)
+    # print(X)
+    # print(y)
 
-    X_train, X_test, y_train, y_test = train_test_split(df[vhod], df['pm10'], test_size=0.3, random_state=1234)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=1234)
 
     reg = LinearRegression()
     reg.fit(X_train, y_train)
@@ -29,7 +35,7 @@ def train_models():
 
     # print(reg.score(X_test, y_test))
 
-    filename = 'models/model1.joblib' 
+    filename = 'models/model2.joblib' 
     # ustvarimo folder in datoteko ce se ne obstaja
     os.makedirs(os.path.dirname(filename), exist_ok=True)
 
@@ -62,9 +68,10 @@ def train_models():
     test_evs = explained_variance_score(y_test, test_pred)
     # print(test_evs)
 
-
     with open("reports/train_metrics.txt", "w") as f:
         f.write(f"Train mae: {train_mae:.4f}\nTrain mse: {train_mse:.4f}\nTrain evs: {train_evs:.4f}")
 
     with open("reports/metrics.txt", "w") as f:
         f.write(f"Test mae: {test_mae:.4f}\nTest mse: {test_mse:.4f}\nTest evs: {test_evs:.4f}")
+
+train_models()

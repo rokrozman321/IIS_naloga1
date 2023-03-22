@@ -6,7 +6,7 @@ from src import *
 # process_data()
 # process_weather_data()
 
-merge_data()
+# merge_data()
 
 # # pridobimo podatke
 # fetch_data()
