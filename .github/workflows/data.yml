@@ -253,6 +253,10 @@ jobs:
           dvc remote modify origin --local password ${{ secrets.DAGSHUB_PASSWORD }}
           dvc pull
 
+      - name: Git pull 
+        run: |
+          git pull
+
       - name: Process air data
         run: |
           source .venv/bin/activate
@@ -261,17 +265,19 @@ jobs:
       - name: DVC add
         run: |
           source .venv/bin/activate
+          cat data/processed/air_data.csv.dvc
           dvc add data/processed/air_data.csv
           dvc remote modify origin --local auth basic 
           dvc remote modify origin --local user rokrozman321 
           dvc remote modify origin --local password ${{ secrets.DAGSHUB_PASSWORD }}
+          cat data/processed/air_data.csv.dvc
           dvc push
 
       - name: Commit changes
         run: |
           git config --global user.name 'Rok Rozman'
           git config --global user.email 'rok.rozman2@student.um.si'
-          git add data/processed/air_data.csv.dvc
+          git add .
           git commit -m "Raw arso data with GitHub Actions"
       - name: Push changes
         uses: ad-m/github-push-action@master
