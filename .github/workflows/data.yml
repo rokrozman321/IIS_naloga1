@@ -113,6 +113,10 @@ jobs:
           dvc remote modify origin --local password ${{ secrets.DAGSHUB_PASSWORD }}
           dvc pull
 
+      - name: Git pull 
+        run: |
+          git pull
+
       - name: Process arso data
         run: |
           source .venv/bin/activate
