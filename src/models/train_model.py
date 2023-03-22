@@ -74,4 +74,4 @@ def train_models():
     with open("reports/metrics.txt", "w") as f:
         f.write(f"Test mae: {test_mae:.4f}\nTest mse: {test_mse:.4f}\nTest evs: {test_evs:.4f}")
 
-train_models()
+# train_models()
