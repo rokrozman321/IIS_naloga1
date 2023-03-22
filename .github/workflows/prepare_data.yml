@@ -1,10 +1,10 @@
 name: Prepare data 
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
   schedule:
-    - cron: '15 11 * * *'
+    - cron: '50 11 * * *'
     # vsaki dan ob 10ih
 
 jobs:
@@ -56,6 +56,9 @@ jobs:
           dvc remote modify origin --local user rokrozman321 
           dvc remote modify origin --local password ${{ secrets.DAGSHUB_PASSWORD }}
           dvc push
+      - name: Dodaj readme
+        run: |
+        echo "- Avtomatsko dodano iz fetch arso data">> README.md
       - name: Commit changes
         run: |
           git config --global user.name 'Rok Rozman'
@@ -129,6 +132,9 @@ jobs:
           dvc remote modify origin --local user rokrozman321 
           dvc remote modify origin --local password ${{ secrets.DAGSHUB_PASSWORD }}
           dvc push
+      - name: Dodaj readme
+        run: |
+        echo "- Avtomatsko dodano iz process arso data">> README.md
       - name: Commit changes
         run: |
           git config --global user.name 'Rok Rozman'
@@ -197,6 +203,10 @@ jobs:
       - name: Pull 
         run: |
           git pull
+      - name: Dodaj readme
+        run: |
+          echo "- Avtomatsko dodano iz fetch air data">> README.md
+
 
       - name: Commit changes
         run: |
@@ -272,6 +282,9 @@ jobs:
           dvc remote modify origin --local user rokrozman321 
           dvc remote modify origin --local password ${{ secrets.DAGSHUB_PASSWORD }}
           dvc push
+      - name: Dodaj readme
+        run: |
+          echo "- Avtomatsko dodano iz fetch air data">> README.md
       - name: Commit changes
         run: |
           git config --global user.name 'Rok Rozman'

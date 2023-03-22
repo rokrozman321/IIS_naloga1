@@ -85,3 +85,5 @@ git add data\processed\merged.csv.dvc
 git commit -m "test s data"
 dvc push
 dvc pull
+
+Avtomatsko dodano:
