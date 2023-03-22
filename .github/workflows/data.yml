@@ -1,7 +1,10 @@
 name: Data 
 on:
+  push:
+    branches:
+      - main
   schedule:
-    - cron: '30 12 * * *'
+    - cron: '45 12 * * *'
 jobs:
   fetch_arso_data:
     runs-on: ubuntu-latest
@@ -174,31 +177,31 @@ jobs:
           source .venv/bin/activate
           pytest tests/air_test.py
 
-      - name: Fetch air data
-        run: |
-          source .venv/bin/activate
-          python src/data/fetch_air_data.py
+      # - name: Fetch air data
+      #   run: |
+      #     source .venv/bin/activate
+      #     python src/data/fetch_air_data.py
 
-      - name: dvc add
-        run: |
-          source .venv/bin/activate
-          dvc add data/raw/weather/air_data.json
-          dvc remote modify origin --local auth basic 
-          dvc remote modify origin --local user rokrozman321 
-          dvc remote modify origin --local password ${{ secrets.DAGSHUB_PASSWORD }}
-          dvc push
+      # - name: dvc add
+      #   run: |
+      #     source .venv/bin/activate
+      #     dvc add data/raw/weather/air_data.json
+      #     dvc remote modify origin --local auth basic 
+      #     dvc remote modify origin --local user rokrozman321 
+      #     dvc remote modify origin --local password ${{ secrets.DAGSHUB_PASSWORD }}
+      #     dvc push
 
-      - name: Commit
-        run: |
-          git config --global user.name 'Rok Rozman'
-          git config --global user.email 'rok.rozman2@student.um.si'
-          git add data/raw/weather/air_data.json.dvc
-          git commit -m "Raw arso data with GitHub Actions"
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.MY_TOKEN }}
-          branch: ${{ github.ref }}
+      # - name: Commit
+      #   run: |
+      #     git config --global user.name 'Rok Rozman'
+      #     git config --global user.email 'rok.rozman2@student.um.si'
+      #     git add data/raw/weather/air_data.json.dvc
+      #     git commit -m "Raw arso data with GitHub Actions"
+      # - name: Push changes
+      #   uses: ad-m/github-push-action@master
+      #   with:
+      #     github_token: ${{ secrets.MY_TOKEN }}
+      #     branch: ${{ github.ref }}
 
   process_air_data:
     needs: fetch_air_data
