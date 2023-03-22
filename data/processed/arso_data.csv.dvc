@@ -1,9 +1,4 @@
 outs:
-<<<<<<< HEAD
-- md5: 37ddd4065f245a6192ab1cac7d00c40d
-  size: 37092
-=======
-- md5: 3612a363df065c37259e38acc14141d6
-  size: 37309
->>>>>>> 168d9a8687b201620c84781b4edf685690031a1e
+- md5: 345fbcaaf733929e38da2b4c9b682538
+  size: 37038
   path: arso_data.csv

@@ -1,9 +1,4 @@
 outs:
-<<<<<<< HEAD
-- md5: 4cdb4220cc907e4b63d19cb1dc78536b
+- md5: 6dc10c259c51b104948d74de1c7027ab
   size: 50904633
-=======
-- md5: 4d617abffe3466939d63345fe62a149b
-  size: 50981364
->>>>>>> 168d9a8687b201620c84781b4edf685690031a1e
   path: data.json
