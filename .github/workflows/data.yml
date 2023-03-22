@@ -63,7 +63,7 @@ jobs:
           git config --global user.name 'Rok Rozman'
           git config --global user.email 'rok.rozman2@student.um.si'
           git status
-          git add data/raw/data.json.dvc
+          git add .
           git commit -m "Raw arso data with GitHub Actions"
       - name: Push changes
         uses: ad-m/github-push-action@master
@@ -132,7 +132,8 @@ jobs:
           git config --global user.name 'Rok Rozman'
           git config --global user.email 'rok.rozman2@student.um.si'
           git status
-          git add data/processed/arso_data.csv.dvc
+          git add .
+  # git add data/processed/arso_data.csv.dvc
           git commit -m "Raw arso data with GitHub Actions"
       - name: Push changes
         uses: ad-m/github-push-action@master
