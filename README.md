@@ -86,4 +86,4 @@ git commit -m "test s data"
 dvc push
 dvc pull
 
-Avtomatsko dodano:
+Avtomatsko dodano:- Avtomatsko dodano iz fetch air data
