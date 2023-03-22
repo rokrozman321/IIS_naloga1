@@ -27,4 +27,4 @@ def predict():
 def run_app():
     app.run(host='0.0.0.0', port=5000)
 
-run_app()
+# run_app()
