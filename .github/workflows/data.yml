@@ -121,11 +121,13 @@ jobs:
       - name: DVC add
         run: |
           source .venv/bin/activate
+          cat data/processed/arso_data.csv.dvc
           dvc add data/processed/arso_data.csv
           dvc remote modify origin --local auth basic 
           dvc remote modify origin --local user rokrozman321 
           dvc remote modify origin --local password ${{ secrets.DAGSHUB_PASSWORD }}
           dvc push
+          cat data/processed/arso_data.csv.dvc
 
       - name: Commit changes
         run: |
