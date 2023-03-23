@@ -180,6 +180,10 @@ jobs:
       - name: Install project
         run: poetry install --no-interaction
 
+      - name: Git pull 
+        run: |
+          git pull
+
       - name: Test for air data
         run: |
           source .venv/bin/activate
