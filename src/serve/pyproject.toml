@@ -16,6 +16,7 @@ flask = "^2.2.3"
 pytest = "^7.2.1"
 dvc = "^2.51.0"
 dvc-gdrive = "^2.19.1"
+flask-cors = "^3.0.10"
 
 
 [build-system]

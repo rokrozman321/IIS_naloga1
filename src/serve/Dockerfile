@@ -9,11 +9,14 @@ RUN pip install poetry
 COPY pyproject.toml  .
 COPY poetry.lock .
 
+# COPY ../../pyproject.toml .
+# COPY ../../poetry.lock .
+
 RUN poetry install --no-root --no-dev
 
 COPY . /app
 
-COPY ../../. /app/
+# COPY ../models/train_model.py /app/models/
 
 COPY app.py /app/src/serve/
 

@@ -7,5 +7,6 @@ services:
       - '5000:5000'
   react:
     build: ./client
+    container_name: react_app
     ports:
       - '3000:3000'
