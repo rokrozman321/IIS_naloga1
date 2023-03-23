@@ -2,10 +2,12 @@ from flask import Flask, request, jsonify
 import pandas as pd
 import pickle
 import os
+from flask_cors import CORS
 
 import joblib
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/', methods=['GET'])
 def test():
@@ -28,3 +30,5 @@ def run_app():
     app.run(host='0.0.0.0', port=5000)
 
 # run_app()
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
