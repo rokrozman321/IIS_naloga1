@@ -95,3 +95,4 @@ dvc push
 dvc pull
 
 Avtomatsko dodano:- Avtomatsko dodano iz fetch air data
+- Avtomatsko dodano iz fetch air data
