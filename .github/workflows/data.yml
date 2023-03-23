@@ -4,7 +4,7 @@ on:
   #   branches:
   #     - main
   schedule:
-    - cron: '50 23 * * *'
+    - cron: '0 7 * * *'
 jobs:
   fetch_arso_data:
     runs-on: ubuntu-latest
