@@ -96,3 +96,60 @@ dvc pull
 
 Avtomatsko dodano:- Avtomatsko dodano iz fetch air data
 - Avtomatsko dodano iz fetch air data
+
+## Vaja 4
+- great_expetations init 
+- y
+- great_expetation datasource new
+- 1
+- 1 pandas
+- data\processed
+- se odpre jupyter notebook
+- cell>run all
+- mas konfiguracijo v great_expetations.yml
+- lahko ustavis notebook
+
+- great_expetations suite new
+- 3 data assist
+- (izberes reference data) 
+- lahko poimenujes
+- odpre notebook
+- zakomentiamo vse stolpce ker zelimo da vse pregleda ali zbrisemo 
+- cell run all
+- odpre avtomatsko dokumentacijo
+- se ti zgenerira json in lahko spreminjas vrednosti not npr max_value: null
+
+- great_expetations checkpoint new my_checkpoint
+- notebook
+- nastavis data_asset_name: current_data.csv 
+- (lahko odkumentiramo da zazene checkpoint in odpre report)
+- run all
+
+- lahko zbrises tota zelo stroga pravila 
+- popravis preko edit suite
+
+- generate python script to trigger checkpoint
+- great_expetations checkpoint script my_checkpoint (ime checkpointa)
+- v uncommitted imamo run_my_checkpoint.py 
+- moremo spremenit context_root_dir
+- prestavi si jo nekak npr expetations ker uncommitted je ignore
+
+
+- na dagshub remote experiments
+- mlflow 
+- train_model moremo dopolnit s mlflow knjiznico
+- mores ustvarit train.csv in test.csv
+- import mlflow
+- copy tracking uri from remote experiment das v ""
+- mlflow.set_tracking_uri()
+- mlflow.set_experiment("ime") pogledas na dagshub
+- mlflow.sklearn.autolog() ali mlflow.autolog()(avtomatsko logiranje)
+- ce dodamo not parameter exclusive=False dodamo se da je rocno
+- damo vse v with mlflow.start_run()
+- dodamo not lastne metroce mlflow.log_metric("name ali key", value)
+- na koncu izven start_run() imamo autolog_run= mlflow.last_active_run()
+- ce rocno pozenemo python src/models/train_model.py pride do tezave ker nimamo mlflow_tracking s dasghub
+- preden pozenemo dodamo setx PATH "name:value"
+- mlflow credentials python ali mlflow authentications python
+
+
