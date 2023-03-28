@@ -127,13 +127,14 @@ Avtomatsko dodano:- Avtomatsko dodano iz fetch air data
 
 - lahko zbrises tota zelo stroga pravila 
 - popravis preko edit suite
-------
+
 - generate python script to trigger checkpoint
 - great_expetations checkpoint script my_checkpoint (ime checkpointa)
 - v uncommitted imamo run_my_checkpoint.py 
 - moremo spremenit context_root_dir
 - prestavi si jo nekak npr expetations ker uncommitted je ignore
 
+------
 
 - na dagshub remote experiments
 - mlflow 
