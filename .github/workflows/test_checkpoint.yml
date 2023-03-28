@@ -37,4 +37,5 @@ jobs:
       - name: Run Checkpoint
         run: |
           source .venv/bin/activate
+          pwd 
           python great_expectations/checkpoints/run_my_checkpoint.py
