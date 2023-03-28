@@ -34,6 +34,18 @@ jobs:
       - name: Install project
         run: poetry install --no-interaction
 
+      - name: Pull 
+        run: |
+          git pull
+
+      - name: Pull data DVC
+        run: |
+          source .venv/bin/activate
+          dvc remote modify origin --local auth basic 
+          dvc remote modify origin --local user rokrozman321 
+          dvc remote modify origin --local password ${{ secrets.DAGSHUB_PASSWORD }}
+          dvc pull
+
       - name: Run Checkpoint
         run: |
           source .venv/bin/activate
