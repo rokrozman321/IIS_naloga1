@@ -1,0 +1,4 @@
+outs:
+- md5: 3eba796da58d041aff6c1456e28ed259
+  size: 8712
+  path: current_data.csv
