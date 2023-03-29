@@ -65,11 +65,8 @@ jobs:
         run: |
           source .venv/bin/activate
           pwd
-          head /data/processed/reference.csv
-          head /data/processed/current.csv
-          copy /data/processed/current.csv /data/processed/reference.csv
-          head /data/processed/reference.csv
-          head /data/processed/current.csv
+          ls
+          ls /data/processed/
 
       - name: Split current data
         run: |
