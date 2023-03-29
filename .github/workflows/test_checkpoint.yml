@@ -64,12 +64,7 @@ jobs:
       - name: Copy current to reference
         run: |
           source .venv/bin/activate
-          pwd
-          ls
-          ls data/processed/
-          cat data/processed/reference_data.csv
-          copy data/processed/current_data.csv data/processed/reference_data.csv
-          cat data/processed/reference_data.csv
+          python src/data/curr_to_ref.py
 
       - name: Split current data
         run: |
