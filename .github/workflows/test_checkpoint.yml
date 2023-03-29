@@ -66,7 +66,7 @@ jobs:
           source .venv/bin/activate
           pwd
           ls
-          ls /data/processed/
+          ls data/processed/
 
       - name: Split current data
         run: |
