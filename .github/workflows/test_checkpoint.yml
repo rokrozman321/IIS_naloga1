@@ -64,11 +64,12 @@ jobs:
       - name: Copy current to reference
         run: |
           source .venv/bin/activate
-          head data/processed/reference.csv
-          head data/processed/current.csv
-          copy data/processed/current.csv data/processed/reference.csv
-          head data/processed/reference.csv
-          head data/processed/current.csv
+          pwd
+          head /data/processed/reference.csv
+          head /data/processed/current.csv
+          copy /data/processed/current.csv /data/processed/reference.csv
+          head /data/processed/reference.csv
+          head /data/processed/current.csv
 
       - name: Split current data
         run: |
