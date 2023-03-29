@@ -51,3 +51,12 @@ jobs:
           source .venv/bin/activate
           pwd 
           python great_expectations/checkpoints/run_my_checkpoint.py
+      
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v1.2
+        with:
+          publish-dir: "great_expectations/uncommitted/data_docs/local_site"
+          production-deploy: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}   
