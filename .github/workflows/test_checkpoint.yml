@@ -60,3 +60,17 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}   
+      
+      - name: Copy current to reference
+        run: |
+          source .venv/bin/activate
+          head data/processed/reference.csv
+          head data/processed/current.csv
+          copy data/processed/current.csv data/processed/reference.csv
+          head data/processed/reference.csv
+          head data/processed/current.csv
+
+      - name: Split current data
+        run: |
+          source .venv/bin/activate
+          python src/data/split_test_train.py
