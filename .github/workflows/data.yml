@@ -418,18 +418,18 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}   
-      - name: Commit changes
-        run: |
-          git config --global user.name 'Rok Rozman'
-          git config --global user.email 'rok.rozman2@student.um.si'
-          git add .
-          git commit -m "Great expectations with GitHub Actions"
+      # - name: Commit changes
+      #   run: |
+      #     git config --global user.name 'Rok Rozman'
+      #     git config --global user.email 'rok.rozman2@student.um.si'
+      #     git add .
+      #     git commit -m "Great expectations with GitHub Actions"
 
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.MY_TOKEN }}
-          branch: ${{ github.ref }}
+      # - name: Push changes
+      #   uses: ad-m/github-push-action@master
+      #   with:
+      #     github_token: ${{ secrets.MY_TOKEN }}
+      #     branch: ${{ github.ref }}
 
   evidently:
     needs: great_expectations_validation
