@@ -404,7 +404,7 @@ jobs:
           dvc remote modify origin --local password ${{ secrets.DAGSHUB_PASSWORD }}
           dvc pull
 
-      - name: Run Evidently
+      - name: Run great expectations
         run: |
           source .venv/bin/activate
           pwd 
