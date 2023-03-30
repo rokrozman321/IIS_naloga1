@@ -333,32 +333,32 @@ jobs:
           dvc remote modify origin --local password ${{ secrets.DAGSHUB_PASSWORD }}
           dvc pull
 
-      - name: Merge data
-        run: |
-          source .venv/bin/activate
-          python src/data/merge_data.py
+      # - name: Merge data
+      #   run: |
+      #     source .venv/bin/activate
+      #     python src/data/merge_data.py
 
-      - name: DVC add
-        run: |
-          source .venv/bin/activate
-          dvc add data/processed/merged.csv
-          dvc remote modify origin --local auth basic 
-          dvc remote modify origin --local user rokrozman321 
-          dvc remote modify origin --local password ${{ secrets.DAGSHUB_PASSWORD }}
-          dvc push
+      # - name: DVC add
+      #   run: |
+      #     source .venv/bin/activate
+      #     dvc add data/processed/merged.csv
+      #     dvc remote modify origin --local auth basic 
+      #     dvc remote modify origin --local user rokrozman321 
+      #     dvc remote modify origin --local password ${{ secrets.DAGSHUB_PASSWORD }}
+      #     dvc push
 
-      - name: Commit changes
-        run: |
-          git config --global user.name 'Rok Rozman'
-          git config --global user.email 'rok.rozman2@student.um.si'
-          git add data/processed/merged.csv.dvc
-          git commit -m "Merged data with GitHub Actions"
+      # - name: Commit changes
+      #   run: |
+      #     git config --global user.name 'Rok Rozman'
+      #     git config --global user.email 'rok.rozman2@student.um.si'
+      #     git add data/processed/merged.csv.dvc
+      #     git commit -m "Merged data with GitHub Actions"
 
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.MY_TOKEN }}
-          branch: ${{ github.ref }}
+      # - name: Push changes
+      #   uses: ad-m/github-push-action@master
+      #   with:
+      #     github_token: ${{ secrets.MY_TOKEN }}
+      #     branch: ${{ github.ref }}
 
   great_expectations_validation:
     needs: merge_data
