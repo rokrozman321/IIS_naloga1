@@ -61,10 +61,10 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}   
       
-      # - name: Evidently
-      #   run: |
-      #     source .venv/bin/activate
-      #     python src/data/evidently.py
+      - name: Evidently
+        run: |
+          source .venv/bin/activate
+          python src/data/evendently_getting_started_tutorial.py
       
       - name: Copy current to reference
         run: |
