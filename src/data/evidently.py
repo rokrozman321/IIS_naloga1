@@ -1,9 +1,9 @@
 import pandas as pd
 import numpy as np
 
-from sklearn.datasets import fetch_california_housing
+# from sklearn.datasets import fetch_california_housing
 
-from evidently import ColumnMapping
+# from evidently import ColumnMapping
 
 from evidently.report import Report
 from evidently.metrics.base_metric import generate_column_metrics
