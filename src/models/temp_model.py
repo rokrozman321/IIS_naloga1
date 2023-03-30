@@ -10,7 +10,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 import mlflow
-# from utils import fetch_logged_data
 from pprint import pprint
 
 def train_model2():
@@ -35,42 +34,24 @@ def train_model2():
     df = pd.read_csv(filename)
     filename = 'data/processed/test_data.csv'
     df_test = pd.read_csv(filename)
-    # print(df)
-    # print(df_test)
+
     df['time'] = pd.to_datetime(df['datetime'])
     df.sort_values(by='time', inplace=True)
     df = df.drop(['datetime'], axis=1)
-    print(df)
     df = df.drop(['time'], axis=1)
-    print(df)
     
     X_train = df[['pm2.5', 'o3', 'no2', 'temps']]
     y_train = df['pm10']
 
-    # print(X_train)
-    # print("---------------------------")
-    # print(y_train)
-
     X_test = df_test[['pm2.5', 'o3', 'no2', 'temps']]
     y_test = df_test['pm10']
 
-    # print(X_test)
-    # print("---------------------------")
-    # print(y_test)
     with mlflow.start_run():
         reg = LinearRegression()
         reg.fit(X_train, y_train)
 
-        # show logged data
-        # for key, data in fetch_logged_data(run_id).items():
-        # print(r)
-        # print("\n---------- logged {} ----------".format(run_id.key))
-        # pprint(run_id.data)
-
         train_pred = reg.predict(X_train)
         test_pred = reg.predict(X_test)
-
-        # print(reg.score(X_test, y_test))
 
         filename = 'models/model2.joblib' 
         # ustvarimo folder in datoteko ce se ne obstaja
