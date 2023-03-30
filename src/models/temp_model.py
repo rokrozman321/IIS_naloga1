@@ -3,6 +3,7 @@ import numpy as np
 from sklearn.linear_model import LinearRegression
 import mlflow
 from mlflow import MlflowClient
+import os
 
 
 def fetch_logged_data(run_id):
@@ -11,10 +12,6 @@ def fetch_logged_data(run_id):
     tags = {k: v for k, v in data.tags.items() if not k.startswith("mlflow.")}
     artifacts = [f.path for f in client.list_artifacts(run_id, "model")]
     return data.params, data.metrics, tags, artifacts
-
-# export MLFLOW_TRACKING_USERNAME=rokrozman321
-# export MLFLOW_TRACKING_PASSWORD=5e0bc28a77878c6c315d7d1f8ac30a58f611f7fa
-
 
 MLFLOW_TRACKING_URI="https://dagshub.com/rokrozman321/IIS_naloga1.mlflow"
 mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)

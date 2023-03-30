@@ -76,5 +76,14 @@ jobs:
           source .venv/bin/activate
           python src/data/split_test_train.py
 
+      - name: Train model
+        env: 
+          MLFLOW_TRACKING_USERNAME: ${{ secrets.MLFLOW_TRACKING_USERNAME }}
+          MLFLOW_TRACKING_PASSWORD: ${{ secrets.MLFLOW_TRACKING_PASSWORD }}
+        run: |
+          source .venv/bin/activate
+          python src/models/train_model.py
+
+
 
 # tu bi se mogo dodat dvc push in to
