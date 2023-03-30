@@ -61,6 +61,11 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}   
       
+      - name: Evidently
+        run: |
+          source .venv/bin/activate
+          python src/data/evidently.py
+      
       - name: Copy current to reference
         run: |
           source .venv/bin/activate
@@ -70,3 +75,6 @@ jobs:
         run: |
           source .venv/bin/activate
           python src/data/split_test_train.py
+
+
+# tu bi se mogo dodat dvc push in to

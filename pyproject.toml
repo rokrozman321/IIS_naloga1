@@ -21,6 +21,7 @@ great-expectations = "^0.16.3"
 evidently = "^0.2.7"
 numpy = "1.23.5"
 mlflow = "^2.2.2"
+dagshub = "^0.2.12"
 
 
 [tool.poetry.group.dev.dependencies]
