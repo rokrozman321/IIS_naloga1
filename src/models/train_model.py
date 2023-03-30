@@ -191,4 +191,4 @@ def train_model2():
         f.write(f"Test mae: {test_mae:.4f}\nTest mse: {test_mse:.4f}\nTest evs: {test_evs:.4f}")
 
 
-train_model2()
+# train_model2()
